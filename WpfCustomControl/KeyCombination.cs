@@ -63,7 +63,7 @@ namespace WpfCustomControl
 
         private TextBox TextBoxKeyShortcut { get; set; }
 
-        private List<Key> AcceptKeys { get; set; } = new List<Key> { Key.LeftAlt,Key.RightAlt,Key.LeftCtrl,Key.RightCtrl,Key.LeftShift,Key.RightShift };
+        private List<Key> AcceptKeys { get; set; } = new List<Key> { Key.System,Key.LeftCtrl,Key.RightCtrl,Key.LeftShift,Key.RightShift };
        
 
         public override void OnApplyTemplate()
@@ -99,7 +99,7 @@ namespace WpfCustomControl
         private bool HasKeyDuplicate(Key key)
         {
             if ((key == Key.LeftShift || key == Key.RightShift) && HasKeyShift() ||
-                    (key == Key.LeftAlt || key == Key.RightAlt) && HasKeyAlt() ||
+                    key == Key.System  && HasKeyAlt() ||
                 (key == Key.LeftCtrl || key == Key.RightCtrl) && HasKeyControl() )
                 {
                 return true;
@@ -115,7 +115,7 @@ namespace WpfCustomControl
 
         private bool HasKeyAlt()
         {
-            return KeysList.Contains(Key.LeftAlt) || KeysList.Contains(Key.RightAlt);
+            return KeysList.Contains(Key.System);
         }
 
         private bool HasKeyControl()
@@ -136,6 +136,7 @@ namespace WpfCustomControl
         private void TextBoxKeyShortcut_LostFocus(object sender, RoutedEventArgs e)
         {
             EndEditEvent?.Invoke(this, KeyShortcut);
+            MessageBox.Show("lost focus, and we need to save.");
         }
     }
 }

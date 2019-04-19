@@ -6,7 +6,12 @@
         xmlns:local="clr-namespace:WpfCustomControl"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-    
+
+    <StackPanel>
+        <TextBox Width="400" Height="100" AcceptsReturn="True">Tap this one,then we can make below one lost focus</TextBox>
+        <Border Height="100" Width="1"></Border>
         <local:KeyCombination Width="200" Height="100"></local:KeyCombination>
+    </StackPanel>
+       
     
 </Window>
